@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 .showRationale(new OnShowRationaleHandler() {
                     @Override
                     public void showRationaleForRequest(Context context, String[] permissions, ProceedCallback callback) {
-                        showAfterDialog(callback);
+                        showRationaleDialog(callback);
                     }
                 })
                 .shouldRequestWhenDenied(new OnRequestHandler() {
                     @Override
-                    public void showRequestWhenDenied(Context context, String[] permissions, final ProceedCallback callback) {
+                    public void showRequestWhenDenied(Context context, String[] permissions, ProceedCallback callback) {
                         showRequestAgainDialog(callback);
                     }
                 })
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void showAfterDialog(final ProceedCallback callback) {
+    private void showRationaleDialog(final ProceedCallback callback) {
         new AlertDialog.Builder(this)
                 .setCancelable(false)
-                .setTitle("after permission")
+                .setTitle("rationale")
                 .setMessage("need write permission for output files")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private void showRequestAgainDialog(final ProceedCallback callback) {
         new AlertDialog.Builder(this)
                 .setCancelable(false)
-                .setTitle("permission")
+                .setTitle("request once more")
                 .setMessage("need write permission for output files")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override

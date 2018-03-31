@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 1
-        versionName "0.1.0"
+        versionCode 2
+        versionName "0.1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -25,7 +25,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:27.1.0'
+    api "com.android.support:support-fragment:${ANDROID_SUPPORT_VERSION}"
+    compileOnly "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
 }
 
 task sourcesJar(type: Jar) {

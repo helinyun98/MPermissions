@@ -16,7 +16,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.helinyun98:MPermissions:0.1.0'
+    implementation 'com.github.helinyun98:MPermissions:0.1.0'
 }
 ```
 
