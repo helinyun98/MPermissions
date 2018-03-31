@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/helinyun98/MPermissions.svg)](https://jitpack.io/#helinyun98/MPermissions)
 # MPermissions
 Android Permissions Utils
 
@@ -15,7 +16,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.helinyun98:MPermissions:{latest version}'
+    compile 'com.github.helinyun98:MPermissions:0.1.0'
 }
 ```
 
