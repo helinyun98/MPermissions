@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import top.helinyun.util.permissions.MPermissions;
-import top.helinyun.util.permissions.OnAfterRequestHandler;
+import top.helinyun.util.permissions.OnShowRationaleHandler;
 import top.helinyun.util.permissions.OnRequestHandler;
 import top.helinyun.util.permissions.OnResultCallback;
 import top.helinyun.util.permissions.ProceedCallback;
@@ -48,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
     private void writeFileWithPermission() {
         MPermissions.with(this)
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .shouldExplainAfterRequest(new OnAfterRequestHandler() {
+                .showRationale(new OnShowRationaleHandler() {
                     @Override
-                    public void shouldShowExplainForRequest(Context context, String[] permissions, ProceedCallback callback) {
+                    public void showRationaleForRequest(Context context, String[] permissions, ProceedCallback callback) {
                         showAfterDialog(callback);
                     }
                 })
                 .shouldRequestWhenDenied(new OnRequestHandler() {
                     @Override
-                    public void shouldShowRequestWhenDenied(Context context, String[] permissions, final ProceedCallback callback) {
+                    public void showRequestWhenDenied(Context context, String[] permissions, final ProceedCallback callback) {
                         showRequestAgainDialog(callback);
                     }
                 })

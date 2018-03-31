@@ -23,7 +23,7 @@ public class PermissionRequest implements LifecycleListener, RequestResultListen
     private Lifecycle lifecycle;
     private RequestExecutor executor;
 
-    private OnAfterRequestHandler afterHandler;
+    private OnShowRationaleHandler afterHandler;
     private OnRequestHandler handler;
     private OnResultCallback callback;
 
@@ -50,7 +50,7 @@ public class PermissionRequest implements LifecycleListener, RequestResultListen
         return this;
     }
 
-    public PermissionRequest shouldExplainAfterRequest(OnAfterRequestHandler afterHandler) {
+    public PermissionRequest showRationale(OnShowRationaleHandler afterHandler) {
         this.afterHandler = afterHandler;
         return this;
     }
@@ -107,7 +107,7 @@ public class PermissionRequest implements LifecycleListener, RequestResultListen
             }
         }
         if (needExplain && afterHandler != null) {
-            afterHandler.shouldShowExplainForRequest(context, permissions, getProceedHandler(permissions));
+            afterHandler.showRationaleForRequest(context, permissions, getProceedHandler(permissions));
         } else {
             executor.requestPermission(permissions);
         }
@@ -132,7 +132,7 @@ public class PermissionRequest implements LifecycleListener, RequestResultListen
         if (shouldShowRationale.size() + grantedPermissions.size() + deniedPermissions.size()
                 == needPermissions.size()) {
             final String[] needProceedPermissions = shouldShowRationale.toArray(new String[shouldShowRationale.size()]);
-            handler.shouldShowRequestWhenDenied(context, needProceedPermissions, getProceedHandler(needProceedPermissions));
+            handler.showRequestWhenDenied(context, needProceedPermissions, getProceedHandler(needProceedPermissions));
         }
     }
 
