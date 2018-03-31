@@ -1,9 +1,7 @@
-project.ext {
-    publishVersionName = '0.1.1'
-    publishName = 'android.util.permissions'
-}
-
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.helinyun98'
 
 android {
     compileSdkVersion 27
@@ -13,7 +11,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
-        versionName project.ext.publishVersionName
+        versionName "0.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -28,4 +26,21 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.0'
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+android.libraryVariants.all { variant ->
+    def name = variant.buildType.name
+    def task = project.tasks.create "jar${name.capitalize()}", Jar
+    task.dependsOn variant.javaCompile
+    task.from variant.javaCompile.destinationDir
+    artifacts.add('archives', task)
 }
